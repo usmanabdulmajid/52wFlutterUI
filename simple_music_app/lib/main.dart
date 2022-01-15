@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:simple_music_app/cubit/song_cubit.dart';
+import 'package:simple_music_app/presentation/screen/song_playing_screen.dart';
 import 'package:simple_music_app/repository/song_repo.dart';
 
 import 'presentation/screen/home_screen.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const HomeScreen(),
+        home: const SongPlayingScreen(),
         builder: (context, child) {
           return AnnotatedRegion(
             child: child!,

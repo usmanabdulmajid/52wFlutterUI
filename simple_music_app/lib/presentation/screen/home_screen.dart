@@ -123,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const Icon(Icons.shuffle),
               Row(
                 children: [
-                  const Icon(Icons.skip_previous_rounded),
+                  const Icon(Icons.skip_previous),
                   const SizedBox(width: 20),
                   GestureDetector(
                     onTap: () {
