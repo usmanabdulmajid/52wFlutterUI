@@ -1,6 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_music_app/cubit/song_cubit.dart';
+import 'package:simple_music_app/model/audio_model.dart';
+import 'package:simple_music_app/utils/helper_extension.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,14 +13,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _isPlaying = false;
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<SongCubit>().loadSongs();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0XFFDFE0E2),
         body: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          width: context.width,
+          height: context.height,
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,8 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           bottomRight: Radius.circular(200),
                         ),
                         child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * .5,
+                          width: context.width,
+                          height: context.height * .5,
                           decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
@@ -78,9 +87,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              // List.generate(20, (index) {
-              //   return ListTile();
-              // })
+              BlocBuilder<SongCubit, SongState>(
+                builder: (context, state) {
+                  if (state is SongLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  SongLoaded songLoaded = state as SongLoaded;
+                  List<AudioModel> songs = songLoaded.songs;
+                  return Expanded(
+                    child: ScrollConfiguration(
+                      behavior: const ScrollBehavior(),
+                      child: ListView.builder(
+                        itemCount: songs.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: SizedBox(
+                                width: 100,
+                                child: Text(songs[index].songName!)),
+                            trailing: Text(songs[index].duration!.toDuration),
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                },
+              )
             ],
           ),
         ),
