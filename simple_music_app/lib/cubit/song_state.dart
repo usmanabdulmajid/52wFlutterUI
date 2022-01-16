@@ -15,3 +15,17 @@ class SongLoaded extends SongState {
   @override
   List<Object?> get props => [];
 }
+
+class PlaySong extends SongState {
+  final int duration;
+  PlaySong(this.duration);
+  @override
+  // TODO: implement props
+  List<Object?> get props => [duration];
+}
+
+class StopSong extends SongState {
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}

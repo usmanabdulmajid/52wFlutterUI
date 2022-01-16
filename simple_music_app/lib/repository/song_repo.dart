@@ -14,7 +14,7 @@ class SongRepo implements ISongRepo {
     final songList = await audioQuery.querySongs();
 
     List<AudioModel> songs = songList.map((e) {
-      return AudioModel(e.id, e.duration, e.displayNameWOExt);
+      return AudioModel(e.id, e.duration, e.displayNameWOExt, e.uri);
     }).toList();
     return songs;
   }

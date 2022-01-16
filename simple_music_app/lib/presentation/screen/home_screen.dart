@@ -36,16 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(left: 10.0, top: 15),
-                    child: Icon(
-                      Icons.chevron_left,
-                      size: 40,
-                    ),
-                  ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      padding: const EdgeInsets.symmetric(horizontal: 50),
                       child: PhysicalModel(
                         color: Colors.white,
                         elevation: 24.0,
@@ -56,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Container(
                           width: context.width,
                           height: context.height * .5,
+                          padding: const EdgeInsets.only(bottom: 40),
                           decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
@@ -66,14 +60,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                 image: AssetImage('assets/images/NF.jpg'),
                                 fit: BoxFit.cover),
                           ),
+                          child: Column(
+                            verticalDirection: VerticalDirection.up,
+                            children: const [
+                              Text(
+                                'NF',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                'Perception',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 10.0, top: 30),
-                    child: ImageIcon(
-                      AssetImage('assets/images/menu .png'),
                     ),
                   ),
                 ],
@@ -105,6 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: 100,
                                 child: Text(songs[index].songName!)),
                             trailing: Text(songs[index].duration!.toDuration),
+                            onTap: () {},
                           );
                         },
                       ),

@@ -1,9 +1,11 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:simple_music_app/cubit/song_cubit.dart';
 import 'package:simple_music_app/presentation/screen/song_playing_screen.dart';
+import 'package:simple_music_app/repository/player.dart';
 import 'package:simple_music_app/repository/song_repo.dart';
 
 import 'presentation/screen/home_screen.dart';
@@ -22,9 +24,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => SongCubit(
-            SongRepo(
-              OnAudioQuery(),
-            ),
+            SongRepo(OnAudioQuery()),
+            Player(AudioPlayer()),
           ),
         ),
       ],

@@ -28,10 +28,9 @@ class _SongPlayingScreenState extends State<SongPlayingScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Padding(
-                    padding: EdgeInsets.only(left: 10.0, top: 15),
-                    child: Icon(
-                      Icons.chevron_left,
-                      size: 40,
+                    padding: EdgeInsets.all(8.0),
+                    child: ImageIcon(
+                      AssetImage('assets/images/Back.png'),
                     ),
                   ),
                   Expanded(
@@ -47,6 +46,7 @@ class _SongPlayingScreenState extends State<SongPlayingScreen> {
                         child: Container(
                           width: context.width,
                           height: context.height * .5,
+                          padding: const EdgeInsets.only(bottom: 40),
                           decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
@@ -57,12 +57,33 @@ class _SongPlayingScreenState extends State<SongPlayingScreen> {
                                 image: AssetImage('assets/images/NF.jpg'),
                                 fit: BoxFit.cover),
                           ),
+                          child: Column(
+                            verticalDirection: VerticalDirection.up,
+                            children: const [
+                              Text(
+                                'NF',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16),
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                'Let you Down',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                   const Padding(
-                    padding: EdgeInsets.only(right: 10.0, top: 30),
+                    padding: EdgeInsets.all(8.0),
                     child: ImageIcon(
                       AssetImage('assets/images/menu .png'),
                     ),
