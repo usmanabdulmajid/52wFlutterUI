@@ -1,7 +1,9 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_music_app/cubit/song_cubit.dart';
 import 'package:simple_music_app/model/audio_model.dart';
+import 'package:simple_music_app/presentation/screen/song_playing_screen.dart';
 import 'package:simple_music_app/utils/helper_extension.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -103,20 +105,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   SongLoaded songLoaded = state as SongLoaded;
                   List<AudioModel> songs = songLoaded.songs;
                   return Expanded(
-                    child: ScrollConfiguration(
-                      behavior: const ScrollBehavior(),
-                      child: ListView.builder(
-                        itemCount: songs.length,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            leading: SizedBox(
-                                width: 100,
-                                child: Text(songs[index].songName!)),
-                            trailing: Text(songs[index].duration!.toDuration),
-                            onTap: () {},
-                          );
-                        },
-                      ),
+                    child: ListView.builder(
+                      itemCount: songs.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: SizedBox(
+                              width: 100, child: Text(songs[index].songName!)),
+                          trailing: Text(songs[index].duration!.toDuration),
+                          onTap: () async {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) {
+                              return const SongPlayingScreen();
+                            }));
+                          },
+                        );
+                      },
                     ),
                   );
                 },

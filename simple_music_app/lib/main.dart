@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const SongPlayingScreen(),
+        home: const HomeScreen(),
         builder: (context, child) {
           return AnnotatedRegion(
             child: child!,

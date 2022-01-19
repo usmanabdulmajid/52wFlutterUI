@@ -112,6 +112,7 @@ class _SongPlayingScreenState extends State<SongPlayingScreen> {
                 children: [
                   const Icon(Icons.shuffle),
                   Stack(
+                    alignment: Alignment.center,
                     clipBehavior: Clip.none,
                     children: [
                       PhysicalModel(
@@ -135,38 +136,31 @@ class _SongPlayingScreenState extends State<SongPlayingScreen> {
                         ),
                       ),
                       Positioned(
-                        right: (context.width * .10) + 35,
-                        top: -10,
                         child: GestureDetector(
                           onTap: () {
                             setState(() {
                               _isPlaying = !_isPlaying;
                             });
                           },
-                          child: PhysicalModel(
-                            color: const Color(0XFFDFE0E2),
-                            elevation: 1.0,
-                            shape: BoxShape.circle,
-                            child: Container(
-                              height: 80,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.black,
-                                border:
-                                    Border.all(color: Colors.white, width: 5.0),
-                              ),
-                              alignment: Alignment.center,
-                              child: _isPlaying
-                                  ? const Icon(
-                                      Icons.pause,
-                                      color: Colors.white,
-                                    )
-                                  : const Icon(
-                                      Icons.play_arrow,
-                                      color: Colors.white,
-                                    ),
+                          child: Container(
+                            height: 80,
+                            width: 80,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black,
+                              border:
+                                  Border.all(color: Colors.white, width: 5.0),
                             ),
+                            alignment: Alignment.center,
+                            child: _isPlaying
+                                ? const Icon(
+                                    Icons.pause,
+                                    color: Colors.white,
+                                  )
+                                : const Icon(
+                                    Icons.play_arrow,
+                                    color: Colors.white,
+                                  ),
                           ),
                         ),
                       ),
@@ -175,7 +169,7 @@ class _SongPlayingScreenState extends State<SongPlayingScreen> {
                   const Icon(Icons.repeat),
                 ],
               ),
-              const SizedBox(height: 60),
+              const SizedBox(height: kBottomNavigationBarHeight),
             ],
           ),
         ),
